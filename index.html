@@ -7,8 +7,8 @@
     <style>
         /* --- Style global --- */
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #0d0d0d;
+            font-family: 'Roboto', sans-serif;
+            background-color: #121212;
             color: white;
             text-align: center;
             margin: 0;
@@ -17,25 +17,32 @@
 
         h1 {
             color: #e60000;
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-top: 20px;
             text-transform: uppercase;
             letter-spacing: 2px;
+            font-weight: bold;
         }
 
         .container {
             width: 90%;
-            max-width: 800px;
+            max-width: 900px;
             margin: auto;
+            padding-bottom: 50px;
         }
 
         /* --- Formulaire --- */
         #post-form {
-            background: #1a1a1a;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
-            margin-top: 20px;
+            background: #1e1e1e;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+            margin-top: 30px;
+            transition: 0.3s ease-in-out;
+        }
+
+        #post-form:hover {
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.7);
         }
 
         input, textarea {
@@ -44,14 +51,19 @@
             padding: 12px;
             border: none;
             border-radius: 5px;
-            background: #262626;
+            background: #333;
             color: white;
             font-size: 1rem;
+            outline: none;
+        }
+
+        input:focus, textarea:focus {
+            background: #444;
         }
 
         button {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             background: #e60000;
             border: none;
             border-radius: 5px;
@@ -64,21 +76,32 @@
 
         button:hover {
             background: #ff1a1a;
+            transform: scale(1.05);
         }
 
         /* --- Liste des posts --- */
         .post {
-            background: #1a1a1a;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(255, 0, 0, 0.2);
-            margin: 15px 0;
-            transition: 0.3s;
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+            margin: 20px 0;
+            transition: 0.3s ease-in-out;
         }
 
         .post:hover {
-            transform: scale(1.02);
-            box-shadow: 0 4px 12px rgba(255, 0, 0, 0.5);
+            transform: scale(1.03);
+            box-shadow: 0 6px 18px rgba(255, 0, 0, 0.7);
+        }
+
+        .post h3 {
+            color: #ff1a1a;
+            margin-bottom: 10px;
+        }
+
+        .post small {
+            font-size: 0.85rem;
+            color: #999;
         }
 
         /* --- Pagination --- */
@@ -89,7 +112,7 @@
         .page-btn {
             background: #e60000;
             color: white;
-            padding: 8px 15px;
+            padding: 10px 18px;
             margin: 5px;
             border: none;
             border-radius: 5px;
@@ -100,7 +123,9 @@
 
         .page-btn:hover {
             background: #ff1a1a;
+            transform: scale(1.1);
         }
+
     </style>
 </head>
 <body>
@@ -150,7 +175,7 @@
             paginatedPosts.forEach(post => {
                 const postDiv = document.createElement("div");
                 postDiv.classList.add("post");
-                postDiv.innerHTML = `<h3>${post.title}</h3><p>${post.content}</p><small>${post.date}</small>`;
+                postDiv.innerHTML = `<h3>${post.title}</h3><p>${post.content}</p><small>Publié le ${post.date}</small>`;
                 postList.appendChild(postDiv);
             });
 
